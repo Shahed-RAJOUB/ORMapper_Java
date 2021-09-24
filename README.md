@@ -5,3 +5,4 @@ SWE_3_Project to design an OR Mapper
 * Java
 * Javascript
 * Typescript
+* MySQL
