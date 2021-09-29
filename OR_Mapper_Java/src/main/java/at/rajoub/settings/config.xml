@@ -1,0 +1,5 @@
+<DataBaseConfig>
+    <url>jdbc:postgresql://localhost:5432/postgres</url>
+    <userName>postgres</userName>
+    <password>if19b166</password>
+</DataBaseConfig>
