@@ -6,8 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-public @interface Table {
-    /** Table name. */
-    String tableName() default "";
+@Target({ElementType.FIELD})
+public @interface IgnoreProperty {
 }

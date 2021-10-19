@@ -25,6 +25,6 @@ public class App
                 .flatMap(it -> Arrays.stream(it.getDeclaredFields()))
                 .forEach(field -> System.out.println(((Field) field).getName()));
 
-        TestEntity.class.getDeclaredFields();
+        //TestEntity.class.getDeclaredFields();
     }
 }
