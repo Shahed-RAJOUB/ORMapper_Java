@@ -1,4 +1,4 @@
-package at.rajoub.annotation;
+package at.rajoub.meta.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

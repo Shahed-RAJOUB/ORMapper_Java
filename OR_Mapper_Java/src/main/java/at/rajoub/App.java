@@ -1,11 +1,15 @@
 package at.rajoub;
 
-import at.rajoub.annotation.Table;
-import at.rajoub.model.TestEntity;
+import at.rajoub.meta.annotation.Table;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,16 +18,21 @@ import java.util.Set;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    private static final Logger LOGGER = LogManager.getLogger(App.class.getName());
+    public static void main( String[] args ) throws SQLException {
+        Orm orm = new Orm();
 
-        Reflections reflections = new Reflections("");
+       // List<String> fields = orm.SelectAllColumns("ContactsEntity");
+        List<ArrayList<Object>> data1 = orm.SelectAllRows("ContactsEntity");
+        List<ArrayList<Object>> data2 = orm.SelectAllRows("CustomersEntity");
+        List<ArrayList<Object>> data3 = orm.SelectAllRows("TestEntity");
 
-        Set<Class<?>> classes = reflections.getTypesAnnotatedWith(Table.class);
+       // System.out.println(fields);
+        System.out.println(data1);
+        System.out.println(data2);
+        System.out.println(data3);
 
-        classes.stream()
-                .flatMap(it -> Arrays.stream(it.getDeclaredFields()))
-                .forEach(field -> System.out.println(((Field) field).getName()));
+        LOGGER.info("info");
 
         //TestEntity.class.getDeclaredFields();
     }

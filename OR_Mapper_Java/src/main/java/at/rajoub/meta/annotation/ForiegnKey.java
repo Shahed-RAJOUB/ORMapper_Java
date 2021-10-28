@@ -1,4 +1,4 @@
-package at.rajoub.annotation;
+package at.rajoub.meta.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface Column {
+public @interface ForiegnKey {
     /** Field name. */
     String fieldName() default "";
 

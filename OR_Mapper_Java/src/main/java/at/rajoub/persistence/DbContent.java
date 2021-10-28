@@ -1,16 +1,14 @@
 package at.rajoub.persistence;
 
 import lombok.Data;
-import lombok.extern.log4j.Log4j;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.apache.log4j.Logger;
-
 @Data
-@Log4j
 public class DbContent {
+    private static final Logger logger = LogManager.getLogger("Data Content connected");
     private Connection c;
 
     public DbContent() {
@@ -20,7 +18,6 @@ public class DbContent {
             c.setAutoCommit(false);
         } catch (Exception e) {
             e.printStackTrace();
-            Logger logger = Logger.getLogger(DbContent.class);
             logger.info(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
