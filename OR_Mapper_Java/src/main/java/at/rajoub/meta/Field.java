@@ -7,12 +7,12 @@ import java.lang.reflect.Method;
 
 @Getter
 public class Field {
-    private String columnName;
-    private Class<?> type;
-    private Entity entity;
-    private Method method;
-    private Method setMethod;
-    private boolean nullable;
+    private final String columnName;
+    private final Class<?> type;
+    private final Entity entity;
+//    private Method method;
+//    private Method setMethod;
+//    private boolean nullable;
     private boolean primaryKey;
     private boolean foreignKey;
     //private String foreignKeyFieldName;
@@ -21,6 +21,6 @@ public class Field {
         this.entity =entity;
         type = field.getType();
         columnName = field.getName();
-        entity.getType().getMethod("get" +field.getName());
+       // entity.getType().getMethod("get" +field.getName());
     }
 }

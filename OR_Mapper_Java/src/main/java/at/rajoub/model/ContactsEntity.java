@@ -11,19 +11,23 @@ public class ContactsEntity {
     private String phone;
     private String email;
 
-    public int getcontact_id(){
+    public int getcontact_id() {
         return contact_id;
     }
-    public int getcustomer_id(){
+
+    public int getcustomer_id() {
         return customer_id;
     }
-    public String getcontact_name(){
+
+    public String getcontact_name() {
         return contact_name;
     }
-    public String getphone(){
+
+    public String getphone() {
         return phone;
     }
-    public String getemail(){
+
+    public String getemail() {
         return email;
     }
 }
