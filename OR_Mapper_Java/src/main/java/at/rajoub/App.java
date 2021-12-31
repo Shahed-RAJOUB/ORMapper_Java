@@ -20,17 +20,29 @@ public class App
 {
     private static final Logger LOGGER = LogManager.getLogger(App.class.getName());
     public static void main( String[] args ) throws SQLException {
+
+        // Create a mapper
         Orm orm = new Orm();
 
-       // List<String> fields = orm.SelectAllColumns("ContactsEntity");
-        List<ArrayList<Object>> data1 = orm.SelectAllRows("ContactsEntity");
-        List<ArrayList<Object>> data2 = orm.SelectAllRows("CustomersEntity");
-        List<ArrayList<Object>> data3 = orm.SelectAllRows("TestEntity");
+        // Select all
+        List<ArrayList<Object>> allDataInContanct = orm.SelectAllRows("ContactsEntity");
+        List<ArrayList<Object>> allDataInCustomer = orm.SelectAllRows("CustomersEntity");
+        List<ArrayList<Object>> allDataInTest = orm.SelectAllRows("TestEntity");
 
-       // System.out.println(fields);
-        System.out.println(data1);
-        System.out.println(data2);
-        System.out.println(data3);
+        // Select the properties ina table
+        List<String> fields = orm.SelectAllColumns("ContactsEntity");
+
+        // Select by unique id
+        List<Object> rowAtIdFromContact = orm.SelectByID("ContactsEntity",1);
+
+        // Select by a property value
+        List<ArrayList<Object>>  rowAtColumnFromContact = orm.SelectbyColumn("ContactsEntity","email","john.doe@bluebird.dev");
+
+
+        System.out.println(allDataInContanct);
+        System.out.println(allDataInCustomer);
+        System.out.println(allDataInTest);
+        System.out.println(fields);
 
         LOGGER.info("info");
 

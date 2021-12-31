@@ -19,16 +19,12 @@ public class Orm {
 
     public List<String> SelectAllColumns(String tableName) {
         List<String> fieldsNames = new ArrayList<>();
-
         //classes.forEach(it -> fieldsNames.add(it.getSimpleName()));
         List<Class<?>> selected = classes.stream()
-                .filter(attr->tableName.equals(attr.getSimpleName()))
+                .filter(attr -> tableName.equals(attr.getSimpleName()))
                 .collect(Collectors.toList());
-
         Entity entity = new Entity(selected.get(0));
-
-        entity.getFields().stream().forEach(f-> fieldsNames.add((f.getColumnName())));
-
+        entity.getFields().stream().forEach(f -> fieldsNames.add((f.getColumnName())));
         return fieldsNames;
 
     }
@@ -36,10 +32,18 @@ public class Orm {
     public List<ArrayList<Object>> SelectAllRows(String e) throws SQLException {
         List<String> columns = SelectAllColumns(e);
         List<Class<?>> selected = classes.stream()
-                .filter(attr->e.equals(attr.getSimpleName()))
+                .filter(attr -> e.equals(attr.getSimpleName()))
                 .collect(Collectors.toList());
         Entity entity = new Entity(selected.get(0));
         CrudOperations op = new CrudOperations();
-       return op.SelectAll(entity , columns);
+        return op.SelectAll(entity, columns);
+    }
+
+    public List<Object> SelectByID(String entity, int id) throws SQLException {
+       return SelectAllRows(entity).get(id);
+    }
+
+    public List<ArrayList<Object>> SelectbyColumn(String entity, String column, String value) {
+       return null;
     }
 }

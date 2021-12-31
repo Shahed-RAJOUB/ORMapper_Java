@@ -25,7 +25,6 @@ public class CrudOperations {
                 for (int i = 0 ; i < columns.size() ; i++){
                     list.add(rs.getObject(columns.get(i)));
                 }
-               // entities = new Entity(rs.getInt("id"), rs.getString("date"), rs.getFloat("duration"), rs.getFloat("destination"), rs.getFloat("calories"), rs.getString("url"), rs.getString("tour_name"), rs.getString("ratings"));
                 dataList.add(list);
             }
 
