@@ -7,7 +7,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface ForiegnKey {
+public @interface ForeignKey {
+    /** Joined to table name required */
+    Class<?> joinedTo();
     /** Field name. */
     String fieldName() default "";
 
