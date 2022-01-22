@@ -18,9 +18,12 @@ public class App {
     public static void main(String[] args) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // Create a mapper
         Orm orm = new Orm();
+        orm.setCash(true);
 
         // Select all
-        List<ContactsEntity> allDataInContanct = orm.SelectAllRows(ContactsEntity.class);
+        List<ContactsEntity> allDataInContanct_1 = orm.SelectAllRows(ContactsEntity.class);
+        // to check if cash works
+        List<ContactsEntity> allDataInContanct_2 = orm.SelectAllRows(ContactsEntity.class);
         List<CustomersEntity> allDataInCustomer = orm.SelectAllRows(CustomersEntity.class);
         List<TestEntity> allDataInTest = orm.SelectAllRows(TestEntity.class);
 
@@ -46,18 +49,19 @@ public class App {
         ContactsEntity smith = ContactsEntity.builder()
                 .customer_id(2).contact_name("Smith").email("Smith@gmail.com").phoneNum("01254789").build();
         // Insert in a table
-        orm.Insert(smith);
+        //orm.Insert(smith);
 
         // Change an old object of the entity
         smith.setContact_name("Stefan");
         // update a value in a row in a table
-        orm.UpdatebyID(6 , smith);
+       // orm.UpdatebyID(6 , smith);
 
         // Delete a row in a table
-        orm.DeleteRowbyId(11 , ContactsEntity.class);
+        //orm.DeleteRowbyId(11 , ContactsEntity.class);
 
 
-        System.out.println(allDataInContanct);
+        System.out.println(allDataInContanct_1);
+        System.out.println(allDataInContanct_2);
         System.out.println(allDataInCustomer);
         System.out.println(allDataInTest);
         System.out.println(fields);
