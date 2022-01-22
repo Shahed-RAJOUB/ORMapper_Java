@@ -4,6 +4,7 @@ import at.rajoub.model.ContactsEntity;
 import at.rajoub.model.CustomersEntity;
 import at.rajoub.model.TestEntity;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 public class App {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // Create a mapper
         Orm orm = new Orm();
 
@@ -50,10 +51,10 @@ public class App {
         // Change an old object of the entity
         smith.setContact_name("Stefan");
         // update a value in a row in a table
-        orm.UpdatebyID(smith);
+        orm.UpdatebyID(6 , smith);
 
         // Delete a row in a table
-        orm.DeleteRowbyId(4);
+        orm.DeleteRowbyId(11 , ContactsEntity.class);
 
 
         System.out.println(allDataInContanct);

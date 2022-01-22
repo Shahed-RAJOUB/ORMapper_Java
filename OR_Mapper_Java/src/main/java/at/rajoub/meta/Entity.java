@@ -25,6 +25,9 @@ public class Entity {
                 .collect(Collectors.toList());
     }
     public Field getPrimaryKey(){
-        return fields.stream().filter(f->f.isPrimaryKey()).findFirst().orElseThrow();
+        return fields.stream().filter(Field::isPrimaryKey).findFirst().orElseThrow();
+    }
+    public List<Field> allFieldsNoPK(){
+        return fields.stream().filter(f->!f.isPrimaryKey()).collect(Collectors.toList());
     }
 }

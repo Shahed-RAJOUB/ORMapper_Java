@@ -4,6 +4,7 @@ import at.rajoub.meta.annotation.Column;
 import at.rajoub.meta.annotation.ForeignKey;
 import at.rajoub.meta.annotation.PrimaryKey;
 import at.rajoub.meta.annotation.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder
+@AllArgsConstructor
 public class ContactsEntity {
 
     @PrimaryKey

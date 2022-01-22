@@ -3,6 +3,7 @@ package at.rajoub;
 import at.rajoub.meta.Entity;
 import at.rajoub.meta.Field;
 import at.rajoub.meta.annotation.Table;
+import at.rajoub.model.ContactsEntity;
 import at.rajoub.persistence.CrudOperations;
 import org.reflections.Reflections;
 
@@ -86,14 +87,22 @@ public class Orm {
         return SelectedJoin;
     }
 
-    public <T> void Insert(Object entity) {
-        // extract the ckas getclass
+    public <T> void Insert(Object entity) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        Entity e = entities.get(entity.getClass());
+        CrudOperations op = new CrudOperations();
+        op.insert(e , entity);
     }
 
-    public <T> void UpdatebyID( Object entity) {
-        // extract id from entity
+    public <T> void UpdatebyID(Object id, Object entity) throws InvocationTargetException, IllegalAccessException, SQLException {
+        Entity e = entities.get(entity.getClass());
+        CrudOperations op = new CrudOperations();
+        op.update(id,e,entity);
     }
-    public <T> void DeleteRowbyId(int id) {
+
+    public <T> void DeleteRowbyId(int id, Class<T> entityClass) throws SQLException {
+        Entity e = entities.get(entityClass);
+        CrudOperations op = new CrudOperations();
+        op.deletebyID(id , e);
     }
 
 
