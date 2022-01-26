@@ -31,6 +31,46 @@ relationship:
 as an example for n-m relationship:
 ![](n-m.png)
 
+SQL Script could be like the following:
+
+```
+create table if not exists test
+(
+	id bigserial
+		constraint test_pk
+			primary key,
+	"testName" varchar
+);
+
+alter table test owner to postgres;
+
+create table if not exists customers
+(
+	customer_id integer generated always as identity
+		constraint customers_pkey
+			primary key,
+	customer_name varchar(255) not null
+);
+
+alter table customers owner to postgres;
+
+create table if not exists contacts
+(
+	contact_id integer generated always as identity
+		constraint contacts_pkey
+			primary key,
+	customer_id integer
+		constraint fk_customer
+			references customers,
+	contact_name varchar(255) not null,
+	phone varchar(15),
+	email varchar(100)
+);
+
+alter table contacts owner to postgres;
+```
+ The most important thing is to choose Primary key as serial that increments automatically.
+
 ## Manual:
 
 The following steps explain how to use this ORM :

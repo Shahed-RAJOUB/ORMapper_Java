@@ -2,6 +2,7 @@ package at.rajoub;
 
 import at.rajoub.model.ContactsEntity;
 import at.rajoub.model.CustomersEntity;
+import at.rajoub.model.StudentEntity;
 import at.rajoub.model.TestEntity;
 
 import java.lang.reflect.InvocationTargetException;
@@ -34,7 +35,8 @@ public class App {
         ContactsEntity rowAtIdFromContact = orm.SelectByID(ContactsEntity.class, 1);
 
         // Select by a property value
-        List<ContactsEntity> rowAtColumnFromContact = orm.SelectbyColumn(ContactsEntity.class, "email", "john.doe@bluebird.dev");
+        List<ContactsEntity> rowAtColumnFromContact_1 = orm.SelectbyColumn(ContactsEntity.class, "email", "john.doe@bluebird.dev");
+        List<ContactsEntity> rowAtColumnFromContact_2 = orm.SelectbyColumn(ContactsEntity.class, "phone", "(408)-111-1234");
         List<ContactsEntity> allRowswithFK = orm.SelectbyColumn(ContactsEntity.class, "customer_id", 1);
 
 
@@ -49,16 +51,19 @@ public class App {
         ContactsEntity smith = ContactsEntity.builder()
                 .customer_id(2).contact_name("Smith").email("Smith@gmail.com").phoneNum("01254789").build();
         // Insert in a table
-        //orm.Insert(smith);
+        orm.Insert(smith);
 
         // Change an old object of the entity
         smith.setContact_name("Stefan");
         // update a value in a row in a table
-       // orm.UpdatebyID(6 , smith);
+        orm.UpdatebyID(6 , smith);
 
         // Delete a row in a table
-        //orm.DeleteRowbyId(11 , ContactsEntity.class);
+        orm.DeleteRowbyId(12 , ContactsEntity.class);
 
+        orm.CreateTable(StudentEntity.class);
+
+        orm.DropTable(StudentEntity.class);
 
         System.out.println(allDataInContanct_1);
         System.out.println(allDataInContanct_2);
@@ -67,9 +72,10 @@ public class App {
         System.out.println(fields);
         System.out.println(rowAtIdFromContact);
         System.out.println(allRowswithFK);
-        System.out.println(rowAtColumnFromContact);
-        System.out.println(customersjoinedcontacts);
-        System.out.println(contactsForCustumers);
+        System.out.println(rowAtColumnFromContact_1);
+        System.out.println(rowAtColumnFromContact_2);
+       // System.out.println(customersjoinedcontacts);
+        //System.out.println(contactsForCustumers);
 
     }
 }

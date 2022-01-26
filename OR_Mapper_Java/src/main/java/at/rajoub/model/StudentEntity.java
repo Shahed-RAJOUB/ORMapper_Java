@@ -8,16 +8,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(tableName = "test")
+@Table(tableName = "students")
 @Data
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-public class TestEntity {
-    @PrimaryKey
-    @Column(columnName = "id")
-    private Long id;
-    @Column(columnName = "testName")
-    private String testName;
+public class StudentEntity {
 
+    @PrimaryKey
+    @Column(columnName = "student_id")
+    private int student_id;
+
+    @Column(columnName = "student_name")
+    private String student_name;
 }

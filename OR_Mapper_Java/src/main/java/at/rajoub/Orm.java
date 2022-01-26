@@ -3,6 +3,7 @@ package at.rajoub;
 import at.rajoub.meta.Entity;
 import at.rajoub.meta.Field;
 import at.rajoub.meta.annotation.Table;
+import at.rajoub.model.StudentEntity;
 import at.rajoub.persistence.CrudOperations;
 import lombok.Setter;
 import org.reflections.Reflections;
@@ -10,7 +11,6 @@ import org.reflections.Reflections;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class Orm {
@@ -77,7 +77,7 @@ public class Orm {
                         }
                     });
                     return (T) cashResults.get(0);
-                }else{
+                } else {
                     Entity entity = entities.get(entityClass);
                     CrudOperations op = new CrudOperations();
                     return (T) op.SelectbyValue(entity, entity.getPrimaryKey(), i).stream().findFirst()
@@ -100,7 +100,7 @@ public class Orm {
     public <T> List<T> SelectbyColumn(Class<T> entityClass, String column, Object value) {
         Entity entity = entities.get(entityClass);
         CrudOperations op = new CrudOperations();
-        Field f = entity.getFields().stream().filter(attr -> column.equals(attr.getFieldName())).findFirst()
+        Field f = entity.getFields().stream().filter(attr -> column.equals(attr.getColumnName())).findFirst()
                 .orElseThrow(() -> new RuntimeException("You need to add column name annotation to your table!"));
         return (List<T>) op.SelectbyValue(entity, f, value);
     }
@@ -146,13 +146,26 @@ public class Orm {
     public <T> void Insert(Object entity) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Entity e = entities.get(entity.getClass());
         CrudOperations op = new CrudOperations();
-        op.insert(e, entity);
+        Object id = op.insert(e, entity);
+        e.getPrimaryKey().getSetMethod().invoke(entity , id);
+        System.out.println(entity);
+        if(cash){
+            Map<Object , Object> temp = new HashMap<>();
+            temp.put(id , entity);
+            cashSet.put(e.getType() , temp);
+        }
     }
 
     public <T> void UpdatebyID(Object id, Object entity) throws InvocationTargetException, IllegalAccessException, SQLException {
         Entity e = entities.get(entity.getClass());
         CrudOperations op = new CrudOperations();
         op.update(id, e, entity);
+        if(cash){
+            cashSet.get(e.getType());
+            Map<Object , Object> temp = new HashMap<>();
+            temp.put(id , entity);
+            cashSet.put(e.getType() , temp);
+        }
     }
 
     public <T> void DeleteRowbyId(int id, Class<T> entityClass) throws SQLException {
@@ -160,6 +173,20 @@ public class Orm {
         CrudOperations op = new CrudOperations();
         op.deletebyID(id, e);
     }
+
+    public <T> void CreateTable(Class<T> entityClass) throws SQLException {
+        Entity e = entities.get(entityClass);
+        CrudOperations op = new CrudOperations();
+        op.createTable(e);
+    }
+
+    public <T> void DropTable(Class<T> entityClass) throws SQLException {
+        Entity e = entities.get(entityClass);
+        CrudOperations op = new CrudOperations();
+        op.dropTable(e);
+    }
+
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Cash methods                                                                                            //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -177,6 +204,5 @@ public class Orm {
         }
         cashSet.put(entity.getType(), temp);
     }
-
 
 }
