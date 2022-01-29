@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 @Data
+/*
+ * Connect to Postgres SQL container
+ */
 public class DbContent {
 
     private Connection c;

@@ -5,18 +5,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/*
+ *This Annotation purpose is to annotate any type of the columns
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface Column {
-    /** Field name. */
-    String fieldName() default "";
-
-    /** Column name. */
+    /**
+     * Column name is required to map properly to the actual column in the table.
+     */
     String columnName() default "";
-
-    /** Column type. */
-    Class columnType() default Void.class;
-
-    /** Nullable flag. */
-    boolean nullable() default false;
 }

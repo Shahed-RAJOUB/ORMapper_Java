@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+/*
+ * Example to build the Entity class
+ */
 public class ContactsEntity {
 
     @PrimaryKey

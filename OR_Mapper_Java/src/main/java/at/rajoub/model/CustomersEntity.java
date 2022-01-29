@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @Table(tableName = "customers")
 @Data
 @NoArgsConstructor
+/*
+ * Example to build the Entity class
+ */
 public class CustomersEntity {
 
     @PrimaryKey

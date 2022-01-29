@@ -69,7 +69,8 @@ create table if not exists contacts
 
 alter table contacts owner to postgres;
 ```
- The most important thing is to choose Primary key as serial that increments automatically.
+
+The most important thing is to choose Primary key as serial that increments automatically.
 
 ## Manual:
 
@@ -82,20 +83,94 @@ The following steps explain how to use this ORM :
 4. Create classes as entities with annotations to connect to the tables in DB
 
 > <p>@table -----------> for a class</p> 
-> <p>@Column ----------> for a property</p>
+> <p>@Column ----------> for a property with the name of the column</p>
 > <p>@PrimaryKey-------> for unique ids</p>
-> <p>@ForeignKey-------> for foreign ids</p>
-> <p>@IgnoreProperty---> to ignore a property </p>
-5. ORM can make the calls to our database and save them in lists of objects.
-6. The following functions can be used to fulfill the needs of this ORM:
-   1. SelectAllRows
-   2. SelectAllColumns
-   3. SelectByID
-   4. SelectbyColumn
-   5. Insert
-   6. DeleteRowbyId
-   7. JoinbyForiegnKey
-   8. Update
+> <p>@ForeignKey-------> for foreign ids with the entity related to it for safe choice </p>
 
+5. ORM can make the calls to our database and save them in lists of objects and cashed the values after first call.
+6. The following functions can be used to fulfill the needs of this ORM:
+
+<table>
+  <tr>
+    <th>Function</th>
+    <th>Requires</th>
+    <th>Returns</th>
+  </tr>
+  <tr>
+    <td><strong>setCash</strong></td>
+    <td>boolean to allow the cash</td>
+    <td> It is void Method to set the cash </td>
+  </tr>
+  <tr>
+    <td><strong>CreateTable</strong></td>
+    <td>Class Entity that is created by the user with proper annotations</td>
+    <td> Void method creates a table in postgres Container</td>
+  </tr>
+  <tr>
+    <td><strong>DropTable</strong></td>
+    <td>Class Entity that is created by the user with proper annotations</td>
+    <td> Void method drops a table in postgres Container</td>
+  </tr>
+  <tr>
+    <td><strong>SelectAllRows</strong></td>
+    <td>Class Entity that is created by the user with proper annotations</td>
+    <td>returns list of all objects of this class</td>
+  </tr>
+<tr>
+    <td><strong>SelectAllColumns</strong></td>
+    <td>Class Entity that is created by the user with proper annotations</td>
+    <td> return list of Strings of columns names of the table mapped to the class</td>
+  </tr>
+<tr>
+    <td><strong>SelectByID</strong></td>
+    <td>Class Entity with the id of the Primary key</td>
+    <td> returns an object of the class responding to this ID</td>
+  </tr>
+<tr>
+    <td><strong>SelectByColumn</strong></td>
+    <td>Class Entity and the column and its value </td>
+    <td> returns list of objects that match the column value</td>
+  </tr>
+<tr>
+    <td><strong>Argument</strong></td>
+    <td> create a neu argument with column name , value and operator</td>
+    <td> new argument to be used in the query</td>
+  </tr>
+<tr>
+    <td><strong>SelectMultiArgQuery</strong></td>
+    <td>Class Entity , where operator (AND or OR), List of Arguments </td>
+    <td>List of Objects that match the required logic</td>
+  </tr>
+<tr>
+    <td><strong>SelectOneArgQuery</strong></td>
+    <td>Class Entity and the argument</td>
+    <td>List of Objects that match the required logic</td>
+  </tr>
+<tr>
+    <td><strong>JoinbyForiegnKey</strong></td>
+    <td>1-n relation with the class entities and the id that matches the PK in one class with FK in the other one</td>
+    <td>Map of One Object and list of Objects related to it </td>
+  </tr>
+<tr>
+    <td><strong>JoinAll</strong></td>
+    <td>1-n relation with the class entities at any ID</td>
+    <td> Map of Objects and list of Objects related to them</td>
+  </tr>
+<tr>
+    <td><strong>Insert</strong></td>
+    <td>New Object of the entity</td>
+    <td>returns new ID and updates the Object after saving</td>
+  </tr>
+<tr>
+    <td><strong>UpdatebyID</strong></td>
+    <td>New Object and the ID</td>
+    <td>Void Method updates the row</td>
+  </tr>
+<tr>
+    <td><strong>DeleteRowbyId</strong></td>
+    <td>Object and the ID</td>
+    <td>Delete the row by the ID</td>
+  </tr>
+</table>
 
   

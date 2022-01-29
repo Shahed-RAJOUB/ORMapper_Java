@@ -52,7 +52,7 @@ class OrmTest {
         TestEntity Expected_Entity = TestEntity.builder().id(2L).testName("test_1").build();
         Orm orm = new Orm();
         //this entity is extracted using ORM
-        List<TestEntity> Result =orm.SelectbyColumn(TestEntity.class, "testName","test_1");
+        List<TestEntity> Result =orm.SelectByColumn(TestEntity.class, "testName","test_1");
         assertEquals(Result.get(0), Expected_Entity.getTestName());
     }
 
@@ -62,7 +62,7 @@ class OrmTest {
         orm.CreateTable(StudentEntity.class);
         StudentEntity Expected_Entity = StudentEntity.builder().student_name("Azam").build();
         orm.Insert(Expected_Entity);
-        List<StudentEntity> Result = orm.SelectbyColumn(StudentEntity.class , "student_name" , "Azam");
+        List<StudentEntity> Result = orm.SelectByColumn(StudentEntity.class , "student_name" , "Azam");
         assertEquals(Result.get(0), Expected_Entity);
     }
 

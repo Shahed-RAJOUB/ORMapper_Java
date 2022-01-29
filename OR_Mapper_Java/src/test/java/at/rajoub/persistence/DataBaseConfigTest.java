@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DataBaseConfigTest {
     @Test
-    void getInstance() {
+    void getInstance_true() {
         Assertions.assertNotNull(DataBaseConfig.getInstance());
     }
 

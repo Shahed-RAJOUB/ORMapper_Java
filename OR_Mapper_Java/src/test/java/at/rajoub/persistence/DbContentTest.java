@@ -7,8 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DbContentTest {
     @Test
-    void getInstance() {
+    void getInstance_true() {
         Assertions.assertNotNull(DbContent.class);
     }
-
 }

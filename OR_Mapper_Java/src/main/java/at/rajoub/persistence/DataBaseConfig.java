@@ -10,6 +10,9 @@ import java.io.File;
 
 @Data
 @NoArgsConstructor
+/*
+ * Create the connection after checking the configurations
+ */
 public class DataBaseConfig {
     @JsonProperty
     private String url;

@@ -11,6 +11,12 @@ import java.util.Arrays;
 
 
 @Getter
+/*
+ * Mapping the Fields in a Class with the columns in the table
+ * Saves the name of each field , column
+ * the Entity that belongs to it
+ * the type , Methods Set the field value and Get the field Value
+ */
 public class Field {
     private final String columnName;
     private final String fieldName;

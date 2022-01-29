@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+/*
+ * Example to build the Entity class
+ */
 public class StudentEntity {
 
     @PrimaryKey
