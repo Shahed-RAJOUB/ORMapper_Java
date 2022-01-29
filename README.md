@@ -26,9 +26,11 @@
 
 This ORM supports tables that has foreign keys to refer to other tables and connect to them. as an example for 1-n
 relationship:
+
 ![](1-n.png)
 
 as an example for n-m relationship:
+
 ![](n-m.png)
 
 SQL Script could be like the following:
@@ -77,16 +79,18 @@ The most important thing is to choose Primary key as serial that increments auto
 The following steps explain how to use this ORM :
 
 1. Create a Postgres Database Docker Container. It could be #something like this:
-   > <p> <em>$ docker run --name Database -p 5432:5432 -e POSTGRES_PASSWORD=if19b166 -d postgres</em></p>
+```
+   $ docker run --name Database -p 5432:5432 -e POSTGRES_PASSWORD=if19b166 -d postgres
+```
 2. Adding url, username, password to Config.xml in Settings folder.
 3. Create a new ORM object where it is needed.
 4. Create classes as entities with annotations to connect to the tables in DB
-
+```
 > <p>@table -----------> for a class</p> 
 > <p>@Column ----------> for a property with the name of the column</p>
 > <p>@PrimaryKey-------> for unique ids</p>
 > <p>@ForeignKey-------> for foreign ids with the entity related to it for safe choice </p>
-
+```
 5. ORM can make the calls to our database and save them in lists of objects and cashed the values after first call.
 6. The following functions can be used to fulfill the needs of this ORM:
 
